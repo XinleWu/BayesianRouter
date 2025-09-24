@@ -1,0 +1,28 @@
+# Model and Dataset Configuration
+model_name: "RLHFlow/LLaMA3-SFT-v2"
+offline_router_path: "/data/cs.aau.dk/zh45qz/router_data/helpsteer3/output14/"
+datasets:
+  strategyqa: "../combined_router/dataset/strategyqa/strategyqa_filtered.json"
+#  gsm8k: "dataset/gsm8k/test.jsonl"
+#  mmlu: "dataset/mmlu/mmlu.json"
+reward_models:
+#  - "Ray2333/Gemma-2B-rewardmodel-baseline"
+  - "hendrydong/Mistral-RM-for-RAFT-GSHF-v0"
+#  - "Skywork/Skywork-Reward-Llama-3.1-8B-v0.2"
+  - "Ray2333/GRM-Llama3.2-3B-rewardmodel-ft"
+  - "Ray2333/GRM-gemma2-2B-rewardmodel-ft"
+#  - "Skywork/Skywork-Reward-V2-Llama-3.1-8B"
+#  - "Skywork/Skywork-Reward-V2-Llama-3.2-3B"
+  - "Skywork/Skywork-Reward-V2-Qwen3-0.6B"
+
+
+# Training Configuration
+training:
+  iterations: 1               # Number of iterations
+  batch_size: 32                # Batch size for training
+  learning_rate: 5e-6           # Learning rate
+  n_responses: 6               # Number of responses to generate during training/inference
+  temperature: 0.8              # Temperature for response generation
+  eval_threshold: 0.1           # Threshold for convergence
+  test_size: 0.2                # Size of test set (for dataset split)
+  dev_size: 0.2                # Size of dev set (from train split)
